@@ -1,4 +1,4 @@
-package com.aman.sploot
+package com.aman.sploot.views.article_screen
 
 
 import android.webkit.WebView
@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -42,7 +41,7 @@ fun ArticleScreen(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             TopAppBar(
-                title = { Text(text = "Article", fontWeight = FontWeight.Bold) },
+                title = { Text(text = "Full Article", fontWeight = FontWeight.Bold) },
                 navigationIcon = {
                     IconButton(onClick = onBackPressed) {
                         Icon(imageVector = Icons.Default.ArrowBack, contentDescription = "Back")

@@ -1,4 +1,4 @@
-package com.aman.sploot.views
+package com.aman.sploot.utils
 
 import com.aman.sploot.model.Article
 
@@ -8,6 +8,6 @@ data class NewsScreenState(
     val error: String? = null,
     val isSearchBarVisible: Boolean= false,
     val selectedArticle: Article? = null,
-    val category: String = "General",
+    val category: String = Constants.CATEGORIES[0],
     val searchQuery: String = ""
 )

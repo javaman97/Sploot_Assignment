@@ -2,10 +2,14 @@ package com.aman.sploot.di
 
 import android.content.Context
 import androidx.room.Room
-import com.aman.sploot.api.ApiService
+import com.aman.sploot.data.ApiService
+import com.aman.sploot.data.local.NewsDB
+import com.aman.sploot.data.local.NewsDao
+import com.aman.sploot.data.local.NewsTypeConvertor
 import com.aman.sploot.repository.NewsRepository
 import com.aman.sploot.repository.NewsRepositoryImpl
 import com.aman.sploot.utils.Constants.BASE_URL
+import com.aman.sploot.utils.Constants.NEWS_DATABASE
 import com.aman.sploot.utils.NetworkUtil
 import dagger.Module
 import dagger.Provides
@@ -32,8 +36,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideNewsRepository(newsApi: ApiService): NewsRepository {
-        return NewsRepositoryImpl(newsApi = newsApi)
+    fun provideNewsRepository(newsApi: ApiService, newsDao: NewsDao, networkUtil: NetworkUtil): NewsRepository {
+        return NewsRepositoryImpl(newsApi = newsApi, newsDao = newsDao, networkUtil = networkUtil)
     }
 
     @Provides
@@ -42,14 +46,20 @@ object AppModule {
         return NetworkUtil(context)
     }
 
-//    @Provides
-//    @Singleton
-//    fun provideDatabase(@ApplicationContext context: Context): NewsDatabase {
-//        return Room.databaseBuilder(
-//            context,
-//            NewsDB::class.java,
-//            "news_database"
-//        ).build()
-//    }
+    @Provides
+    @Singleton
+    fun provideDatabase(@ApplicationContext context: Context): NewsDB {
+        return Room.databaseBuilder(
+            context,
+            NewsDB::class.java,
+            NEWS_DATABASE
+        ).addTypeConverter(NewsTypeConvertor())
+            .fallbackToDestructiveMigration().build()
+    }
+
+    @Provides
+    fun provideArticleDao(database: NewsDB): NewsDao {
+        return database.newsDao()
+    }
 
 }

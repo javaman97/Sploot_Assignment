@@ -2,7 +2,6 @@ package com.aman.sploot.views.newsScreen
 
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -28,7 +27,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
@@ -38,8 +36,9 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import com.aman.sploot.model.Article
 import com.aman.sploot.utils.Constants
-import com.aman.sploot.views.NewsScreenEvent
-import com.aman.sploot.views.NewsScreenState
+import com.aman.sploot.utils.Constants.CATEGORIES
+import com.aman.sploot.utils.NewsScreenEvent
+import com.aman.sploot.utils.NewsScreenState
 import com.aman.sploot.views.components.BottomSheetContent
 import com.aman.sploot.views.components.CategoryTabRow
 import com.aman.sploot.views.components.NewsArticleCard
@@ -50,8 +49,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @OptIn(
-    ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class,
-    ExperimentalComposeUiApi::class
+    ExperimentalMaterial3Api::class
 )
 @Composable
 fun NewsScreen(
@@ -63,9 +61,9 @@ fun NewsScreen(
     val pagerState = rememberPagerState(pageCount = {Constants.PAGE_SIZE})
     val coroutineScope = rememberCoroutineScope()
 
-    val categories = listOf(
-        "General", "Business", "Health", "Technology","Sports", " Entertainment", "Science",
-    )
+//    val categories = listOf(
+//        "General", "Business", "Health", "Technology","Sports", "Entertainment", "Science",
+//    )
 
     val focusRequester = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
@@ -73,7 +71,7 @@ fun NewsScreen(
 
     LaunchedEffect(key1 = pagerState) {
         snapshotFlow { pagerState.currentPage }.collect { page ->
-            onEvent(NewsScreenEvent.OnCategoryChanged(category = categories[page]))
+            onEvent(NewsScreenEvent.OnCategoryChanged(category = CATEGORIES[page]))
         }
     }
 
@@ -158,13 +156,12 @@ fun NewsScreen(
                     ) {
                         CategoryTabRow(
                             pagerState = pagerState,
-                            categories = categories,
+                            categories = CATEGORIES,
                             onTabSelected = { index ->
                                 coroutineScope.launch { pagerState.animateScrollToPage(index) }
                             }
                         )
                         HorizontalPager(
-                            //pageCount = categories.size,
                             state = pagerState
                         ) {
                             NewsArticleList(

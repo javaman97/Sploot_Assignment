@@ -7,6 +7,7 @@ import android.os.Build
 import javax.inject.Inject
 
 class NetworkUtil @Inject constructor(private val context: Context) {
+
     fun isNetworkAvailable(): Boolean {
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -18,5 +19,12 @@ class NetworkUtil @Inject constructor(private val context: Context) {
             val activeNetworkInfo = connectivityManager.activeNetworkInfo
             activeNetworkInfo?.isConnected == true
         }
+    }
+
+    fun isInternetAvailable(callback: (Boolean) -> Unit) {
+        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val activeNetwork = connectivityManager.activeNetworkInfo
+
+        callback(activeNetwork?.isConnected == true)
     }
 }

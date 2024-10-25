@@ -3,11 +3,12 @@ package com.aman.sploot.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.aman.sploot.utils.Constants.ARTICLE_TABLE
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-@Entity("articles")
+@Entity(ARTICLE_TABLE)
 data class Article(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
@@ -26,5 +27,7 @@ data class Article(
     @SerialName("url")
     val url: String? = "",
     @SerialName("urlToImage")
-    val urlToImage: String? = ""
+    val urlToImage: String? = "",
+    @SerialName("category")
+    var category: String? = ""
 )

@@ -7,7 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.aman.sploot.ArticleScreen
+import com.aman.sploot.views.article_screen.ArticleScreen
 import com.aman.sploot.viewmodels.NewsViewModel
 import com.aman.sploot.views.newsScreen.NewsScreen
 

@@ -1,4 +1,4 @@
-package com.aman.sploot.views
+package com.aman.sploot.utils
 
 import com.aman.sploot.model.Article
 

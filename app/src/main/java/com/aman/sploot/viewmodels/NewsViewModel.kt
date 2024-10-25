@@ -6,20 +6,13 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aman.sploot.api.ApiService
-import com.aman.sploot.model.News
 import com.aman.sploot.repository.NewsRepository
-import com.aman.sploot.utils.Constants
 import com.aman.sploot.utils.ResourceState
-import com.aman.sploot.views.NewsScreenEvent
-import com.aman.sploot.views.NewsScreenState
+import com.aman.sploot.utils.NewsScreenEvent
+import com.aman.sploot.utils.NewsScreenState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -80,8 +73,12 @@ class NewsViewModel @Inject constructor(
                 }
 
                 is ResourceState.Error -> {
+                    // If the API call fails, try to fetch from the database
+                    Log.e("NewsViewModel", result.message ?: "Error fetching news")
+                    val localArticles = newsRepository.getLocalArticlesByCategory(category)
+
                     state = state.copy(
-                        articles = emptyList(),
+                        articles = localArticles,
                         isLoading = false,
                         error = result.message
                     )
@@ -107,8 +104,12 @@ class NewsViewModel @Inject constructor(
                 }
 
                 is ResourceState.Error -> {
+                    Log.e("NewsViewModel", result.message ?: "Error searching news")
+
+                    // Fallback to local database
+                    val localArticles = newsRepository.getLocalArticles()
                     state = state.copy(
-                        articles = emptyList(),
+                        articles = localArticles,
                         isLoading = false,
                         error = result.message
                     )

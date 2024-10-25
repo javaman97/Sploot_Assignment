@@ -13,4 +13,9 @@ interface NewsRepository {
     suspend fun searchForNews(
         query: String
     ): ResourceState<List<Article>>
+
+     suspend fun getLocalArticles(): List<Article>
+
+    suspend fun  getLocalArticlesByCategory(category: String):List<Article>
+
 }
