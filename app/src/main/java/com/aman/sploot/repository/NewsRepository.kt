@@ -1,6 +1,6 @@
 package com.aman.sploot.repository
 
-import com.aman.sploot.model.Article
+import com.aman.sploot.data.model.Article
 import com.aman.sploot.utils.ResourceState
 
 interface NewsRepository {

@@ -1,4 +1,4 @@
-package com.aman.sploot.model
+package com.aman.sploot.data.model
 
 
 import androidx.room.Entity

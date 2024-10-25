@@ -1,6 +1,6 @@
 package com.aman.sploot.utils
 
-import com.aman.sploot.model.Article
+import com.aman.sploot.data.model.Article
 
 data class NewsScreenState(
     val isLoading: Boolean = false,

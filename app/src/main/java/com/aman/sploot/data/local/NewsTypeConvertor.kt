@@ -2,7 +2,7 @@ package com.aman.sploot.data.local
 
 import androidx.room.ProvidedTypeConverter
 import androidx.room.TypeConverter
-import com.aman.sploot.model.Source
+import com.aman.sploot.data.model.Source
 
 @ProvidedTypeConverter
 class NewsTypeConvertor {

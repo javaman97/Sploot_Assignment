@@ -1,6 +1,6 @@
-package com.aman.sploot.data
+package com.aman.sploot.data.remote
 
-import com.aman.sploot.model.News
+import com.aman.sploot.data.model.News
 import com.aman.sploot.utils.Constants.API_KEY
 import com.aman.sploot.utils.Constants.DEFAULT_COUNTRY
 import retrofit2.http.GET

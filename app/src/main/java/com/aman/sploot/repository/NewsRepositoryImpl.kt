@@ -1,8 +1,8 @@
 package com.aman.sploot.repository
 
-import com.aman.sploot.data.ApiService
+import com.aman.sploot.data.remote.ApiService
 import com.aman.sploot.data.local.NewsDao
-import com.aman.sploot.model.Article
+import com.aman.sploot.data.model.Article
 import com.aman.sploot.utils.NetworkUtil
 import com.aman.sploot.utils.ResourceState
 

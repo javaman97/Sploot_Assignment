@@ -15,7 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import com.aman.sploot.model.Article
+import com.aman.sploot.data.model.Article
 import com.aman.sploot.utils.dateFormatter
 
 @Composable

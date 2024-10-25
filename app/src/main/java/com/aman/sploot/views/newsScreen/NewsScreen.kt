@@ -34,7 +34,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
-import com.aman.sploot.model.Article
+import com.aman.sploot.data.model.Article
 import com.aman.sploot.utils.Constants
 import com.aman.sploot.utils.Constants.CATEGORIES
 import com.aman.sploot.utils.NewsScreenEvent

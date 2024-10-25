@@ -2,7 +2,7 @@ package com.aman.sploot.di
 
 import android.content.Context
 import androidx.room.Room
-import com.aman.sploot.data.ApiService
+import com.aman.sploot.data.remote.ApiService
 import com.aman.sploot.data.local.NewsDB
 import com.aman.sploot.data.local.NewsDao
 import com.aman.sploot.data.local.NewsTypeConvertor
